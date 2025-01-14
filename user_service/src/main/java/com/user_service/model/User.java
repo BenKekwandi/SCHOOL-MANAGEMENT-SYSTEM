@@ -1,4 +1,4 @@
-package com.system.User_service.model;
+package com.user_service.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

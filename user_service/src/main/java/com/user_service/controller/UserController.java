@@ -1,9 +1,9 @@
-package com.system.User_service.controller;
-import com.system.User_service.dto.UserRequest;
-import com.system.User_service.dto.UserResponse;
-// import com.system.User_service.dto.UserResponse;
-import com.system.User_service.model.User;
-import com.system.User_service.service.UserService;
+package com.user_service.controller;
+import com.user_service.dto.UserRequest;
+import com.user_service.dto.UserResponse;
+// import com.user_service.dto.UserResponse;
+import com.user_service.model.User;
+import com.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

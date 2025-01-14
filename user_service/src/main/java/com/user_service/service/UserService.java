@@ -1,13 +1,13 @@
-package com.system.User_service.service;
+package com.user_service.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.system.User_service.dto.UserRequest;
-import com.system.User_service.dto.UserResponse;
-import com.system.User_service.model.User;
-import com.system.User_service.repository.UserRepository;
+import com.user_service.dto.UserRequest;
+import com.user_service.dto.UserResponse;
+import com.user_service.model.User;
+import com.user_service.repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.RequiredArgsConstructor;
