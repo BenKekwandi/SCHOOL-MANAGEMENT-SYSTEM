@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.Builder;
 import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Table(name="enrollments")
@@ -14,6 +16,7 @@ import jakarta.persistence.Id;
 @Data
 public class Enrollment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer studentId;
     private Integer classId;
