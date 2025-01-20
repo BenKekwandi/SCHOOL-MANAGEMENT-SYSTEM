@@ -1,13 +1,10 @@
 package com.accounting_service.dto;
 
-import Jakarta.persistence.Table;
 
-import java.lang.annotation.Inherited;
-
-import Lombok.Data;
-import Lombok.Builder;
-import Lombok.AllArgsConstructor;
-import Lombok.NoArgsConstructor;
+import lombok.Data;
+import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor

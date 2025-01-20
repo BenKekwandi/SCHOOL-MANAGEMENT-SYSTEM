@@ -21,7 +21,7 @@ public class ClassController{
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ClassResponse> index(){
-       return classService.getAllClasss();
+       return classService.getAllClasses();
     }
 
     // @GetMapping

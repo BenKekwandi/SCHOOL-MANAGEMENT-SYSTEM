@@ -2,12 +2,10 @@ package com.class_service.dto;
 
 import java.util.Date;
 
-import Lombok.Data;
-import Lombok.Builder;
-import Lombok.AllArgsConstructor;
-import Lombok.NoArgsConstructor;
-
-import Jakarta.persistence.Id;
+import lombok.Data;
+import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 
 @Builder

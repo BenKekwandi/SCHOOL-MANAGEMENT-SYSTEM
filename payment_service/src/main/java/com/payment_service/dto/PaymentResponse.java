@@ -1,19 +1,17 @@
-package com.payment_service.model;
+package com.payment_service.dto;
 
 import java.util.Date;
 
 import lombok.Data;
 import lombok.Builder;
-import jakarta.persistence.Table;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@Table(name="payments")
-@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Data
-public class Payment {
-    @Id
+public class PaymentResponse {
     private Integer id;
     private Integer studentId;
     private Double amount;

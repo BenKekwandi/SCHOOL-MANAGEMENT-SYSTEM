@@ -1,10 +1,12 @@
 package com.enrollment_service.model;
 
-import Lombok.Data;
-import Lombok.Builder;
-import Jakarta.persistence.Table;
-import Jakarta.persistence.Entity;
-import Jakarta.persistence.Id;
+import java.util.Date;
+
+import lombok.Data;
+import lombok.Builder;
+import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Table(name="enrollments")
 @Entity

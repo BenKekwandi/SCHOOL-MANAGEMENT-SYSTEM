@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.account_service.dto.AccountRequest;
-import com.account_service.dto.AccountResponse;
-import com.account_service.model.Account;
-import com.account_service.repository.AccountRepository;
+import com.accounting_service.dto.AccountRequest;
+import com.accounting_service.dto.AccountResponse;
+import com.accounting_service.model.Account;
+import com.accounting_service.repository.AccountRepository;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.RequiredArgsConstructor;
@@ -32,12 +32,12 @@ public class AccountService{
 
 
     public Account createAccount(AccountRequest request){
-        Account Account = Account.builder()
+        Account account = Account.builder()
             .studentId(request.getStudentId())
             .balance(request.getBalance())
             .build();
-        AccountRepository.save(Account);
-        return Account;
+        AccountRepository.save(account);
+        return account;
     }
 
     public void editAccount(AccountRequest request){

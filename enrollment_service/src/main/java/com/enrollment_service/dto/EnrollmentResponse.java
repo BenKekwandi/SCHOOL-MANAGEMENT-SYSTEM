@@ -1,9 +1,11 @@
 package com.enrollment_service.dto;
 
-import Lombok.Data;
-import Lombok.Builder;
-import Lombok.AllArgsConstructor;
-import Lombok.NoArgsConstructor;
+import java.util.Date;
+
+import lombok.Data;
+import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 
 @Builder

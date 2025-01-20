@@ -2,11 +2,11 @@ package com.class_service.model;
 
 import java.util.Date;
 
-import Lombok.Data;
-import Lombok.Builder;
-import Jakarta.persistence.Table;
-import Jakarta.persistence.Entity;
-import Jakarta.persistence.Id;
+import lombok.Data;
+import lombok.Builder;
+import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Table(name="classes")
 @Entity

@@ -34,7 +34,7 @@ public class EnrollmentService{
     public Enrollment createEnrollment(EnrollmentRequest request){
         Enrollment enrollment = Enrollment.builder()
             .studentId(request.getStudentId())
-            .courseId(request.getCourseId())
+            .classId(request.getClassId())
             .enrollmentDate(request.getEnrollmentDate())
             .build();
         enrollmentRepository.save(enrollment);
@@ -53,7 +53,7 @@ public class EnrollmentService{
         return EnrollmentResponse.builder()
         .id(enrollment.getId())
         .studentId(enrollment.getStudentId())
-        .courseId(enrollment.getCourseId())
+        .classId(enrollment.getClassId())
         .enrollmentDate(enrollment.getEnrollmentDate())
         .build();
     }

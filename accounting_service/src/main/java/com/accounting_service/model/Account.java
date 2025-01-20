@@ -1,21 +1,19 @@
 package com.accounting_service.model;
 
-import Jakarta.persistence.Table;
+import jakarta.persistence.Table;
 
-import java.lang.annotation.Inherited;
 
-import Jakarta.persistence.Entity;
-import Jakarta.persistence.Id;
-import Lombok.Data;
-import Lombok.Builder;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.Builder;
 
 @Table
 @Entity
 @Data 
 @Builder
 public class Account {
-
-    @Id 
+    @Id
     private String id;
     private Double balance;
     private Integer studentId;

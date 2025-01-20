@@ -22,7 +22,7 @@ public class ClassService{
     public List<ClassResponse> getAllClasses(){
 
         List<Class> classes = classRepository.findAll();
-        return Classes.stream().map(this::mapToClassResponse).toList();
+        return classes.stream().map(this::mapToClassResponse).toList();
         
     }
 
