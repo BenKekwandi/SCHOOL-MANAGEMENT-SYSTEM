@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.payment_service.dto.PaymentEvent;
 import com.payment_service.dto.PaymentRequest;
 import com.payment_service.dto.PaymentResponse;
 import com.payment_service.model.Payment;
 import com.payment_service.repository.PaymentRepository;
+import com.payment_service.producer.PaymentProducer;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class PaymentService{
 
     private final PaymentRepository paymentRepository;
+    private final PaymentProducer paymentProducer;
 
     public List<PaymentResponse> getAllPayments(){
 
@@ -38,6 +41,13 @@ public class PaymentService{
             .paymentDate(request.getPaymentDate())
             .build();
         paymentRepository.save(payment);
+         PaymentEvent event = PaymentEvent.builder()
+                .studentId(payment.getStudentId())
+                .amount(payment.getAmount())
+                .paymentId(String.valueOf(payment.getId()))
+                .paymentDate(payment.getPaymentDate())
+                .build();
+        paymentProducer.publishPaymentEvent(event);
         return payment;
     }
 
