@@ -1,4 +1,4 @@
-package com.enrollment_service.dto;
+package com.class_service.model;
 
 import java.util.Date;
 
@@ -7,16 +7,12 @@ import lombok.Builder;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import com.enrollment_service.model.Student;
-
-
-
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class EnrollmentResponse{
+public class Enrollment{
 
     private Integer id;
     private Integer studentId;

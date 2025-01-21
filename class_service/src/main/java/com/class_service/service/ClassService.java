@@ -1,13 +1,23 @@
 package com.class_service.service;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.class_service.dto.ClassRequest;
 import com.class_service.dto.ClassResponse;
-import com.class_service.model.Class;
+import com.class_service.model.ClassModel;
+import com.class_service.model.Enrollment;
+import com.class_service.model.Student;
+import com.class_service.model.Course;
+import com.class_service.model.Teacher;
 import com.class_service.repository.ClassRepository;
+import com.class_service.client.CourseClient;
+import com.class_service.client.EnrollmentClient;
+import com.class_service.client.TeacherClient;
 
 import lombok.extern.slf4j.Slf4j;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +29,12 @@ public class ClassService{
 
     private final ClassRepository classRepository;
 
-    public List<ClassResponse> getAllClasses(){
+    private final EnrollmentClient enrollmentClient;
+    private final CourseClient courseClient;
+    private final TeacherClient teacherClient;
 
-        List<Class> classes = classRepository.findAll();
+    public List<ClassResponse> getAllClasses(){
+        List<ClassModel> classes = classRepository.findAll();
         return classes.stream().map(this::mapToClassResponse).toList();
         
     }
@@ -31,8 +44,8 @@ public class ClassService{
     // }
 
 
-    public Class createClass(ClassRequest request){
-        Class classItem = Class.builder()
+    public ClassModel createClass(ClassRequest request){
+        ClassModel classItem = ClassModel.builder()
             .status(request.getStatus())
             .teacherId(request.getTeacherId())
             .courseId(request.getCourseId())
@@ -51,14 +64,54 @@ public class ClassService{
         
     }
 
-    public ClassResponse mapToClassResponse(Class classModel){
+    public ClassResponse mapToClassResponse(ClassModel classModel){
+        List<Map<String, Object>> enrollmentsMaps = enrollmentClient.getEnrollmentByClassId(classModel.getId());
+        Map<String, Object> teacherMap = teacherClient.getTeacherById(classModel.getTeacherId());
+        Map<String, Object> courseMap = courseClient.getCourseById(classModel.getCourseId());
+        List<Enrollment> enrollments = mapToEnrollments(enrollmentsMaps);
+        Teacher teacher = mapToTeacher(teacherMap);
+        Course course = mapToCourse(courseMap);
+
         return ClassResponse.builder()
         .id(classModel.getId())
         .status(classModel.getStatus())
-        .teacherId(classModel.getTeacherId())
-        .courseId(classModel.getCourseId())
+        .teacher(teacher)
+        .enrollments(enrollments)
+        .course(course)
         .openingDate(classModel.getOpeningDate())
         .closingDate(classModel.getClosingDate())
         .build();
+    }
+
+    public Course mapToCourse(Map<String, Object> courseMap){
+        return Course.builder()
+        .id((Integer)courseMap.get("id"))
+        .name((String)courseMap.get("name"))
+        .credit((Double)courseMap.get("credit"))
+        .code((String)courseMap.get("code"))
+        .build();
+    }
+
+    public Teacher mapToTeacher(Map<String, Object> teacherMap){
+        return Teacher.builder()
+        .id((Integer)teacherMap.get("id"))
+        .name((String)teacherMap.get("name"))
+        .surname((String)teacherMap.get("surname"))
+        .email((String)teacherMap.get("email"))
+        .build();
+    }
+
+    public List<Enrollment> mapToEnrollments(List<Map<String, Object>> enrollmentsMaps){
+        List<Enrollment> enrollments = new ArrayList<>();
+        for(Map<String, Object>enrollmentsMap: enrollmentsMaps){
+            enrollments.add(
+                Enrollment.builder()
+                .studentId((Integer)enrollmentsMap.get("studentId"))
+                .enrollmentDate((Date)enrollmentsMap.get("enrollmentDate"))
+                .student((Student)enrollmentsMap.get("student"))
+                .build()
+            );
+        }
+        return enrollments;
     }
 }

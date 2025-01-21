@@ -39,8 +39,8 @@ public class CourseController{
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody CourseRequest courseRequest){
-        courseService.editCourse(courseRequest);
+    public Course update(@RequestBody CourseRequest courseRequest, @RequestParam Integer id){
+        return courseService.editCourse(courseRequest, id);
     }
 
     @DeleteMapping

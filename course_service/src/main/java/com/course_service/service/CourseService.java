@@ -1,8 +1,10 @@
 package com.course_service.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.course_service.dto.CourseRequest;
 import com.course_service.dto.CourseResponse;
@@ -42,8 +44,17 @@ public class CourseService{
         return course;
     }
 
-    public void editCourse(CourseRequest request){
-
+    public Course editCourse(CourseRequest request, Integer courseId){
+        Optional<Course> courseOpt = courseRepository.findById(courseId);
+        Course course = courseOpt.get();
+        if (course != null) {
+            course.setName(request.getName());
+            course.setCode(request.getCode());
+            course.setDescription(request.getDescription());
+            course.setCredit(request.getCredit());
+            courseRepository.save(course);
+        }   
+        return course;
     }
 
     public void deleteCourse(){
@@ -52,6 +63,7 @@ public class CourseService{
 
     public CourseResponse mapToCourseResponse(Course course){
         return CourseResponse.builder()
+        .id(course.getId())
         .name(course.getName())
         .code(course.getCode())
         .description(course.getDescription())

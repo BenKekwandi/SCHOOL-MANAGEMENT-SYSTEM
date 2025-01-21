@@ -24,6 +24,12 @@ public class EnrollmentController{
        return enrollmentService.getAllEnrollments();
     }
 
+    @GetMapping("class")
+    @ResponseStatus(HttpStatus.OK)
+    public List<EnrollmentResponse> getByClass(@RequestParam Integer classId){
+        return enrollmentService.getAllEnrollmentsByClassId(classId);
+    }
+
     // @GetMapping
     // @ResponseStatus(HttpStatus.OK)
     // public void show(){

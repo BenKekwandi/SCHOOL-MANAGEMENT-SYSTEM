@@ -2,7 +2,7 @@ package com.class_service.controller;
 
 import com.class_service.dto.ClassRequest;
 import com.class_service.dto.ClassResponse;
-import com.class_service.model.Class;
+import com.class_service.model.ClassModel;
 import com.class_service.service.ClassService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/Class")
+@RequestMapping("api/class")
 public class ClassController{
 
     private final ClassService classService;
@@ -30,10 +30,9 @@ public class ClassController{
     //     classService.getClass();
     // }
 
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Class store(@RequestBody ClassRequest classRequest){
+    public ClassModel store(@RequestBody ClassRequest classRequest){
         return classService.createClass(classRequest);
     }
 
