@@ -24,11 +24,11 @@ public class StudentController{
        return studentService.getAllStudents();
     }
 
-    // @GetMapping
-    // @ResponseStatus(HttpStatus.OK)
-    // public void show(){
-    //     studentService.getstudent();
-    // }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Student get(@PathVariable Integer id){
+        return studentService.getStudent(id);
+    }
 
 
     @PostMapping

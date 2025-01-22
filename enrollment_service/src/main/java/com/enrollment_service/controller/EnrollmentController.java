@@ -6,7 +6,6 @@ import com.enrollment_service.model.Enrollment;
 import com.enrollment_service.service.EnrollmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -24,17 +23,17 @@ public class EnrollmentController{
        return enrollmentService.getAllEnrollments();
     }
 
-    @GetMapping("class")
+    @GetMapping("class/{classId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<EnrollmentResponse> getByClass(@RequestParam Integer classId){
+    public List<EnrollmentResponse> getByClass(@PathVariable Integer classId){
         return enrollmentService.getAllEnrollmentsByClassId(classId);
     }
 
-    // @GetMapping
-    // @ResponseStatus(HttpStatus.OK)
-    // public void show(){
-    //     enrollmentService.getEnrollment();
-    // }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public EnrollmentResponse detail(@PathVariable Integer id){
+        return enrollmentService.getEnrollment(id);
+    }
 
 
     @PostMapping

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "course-service", url = "http://localhost:3004")
 public interface CourseClient {
-    @GetMapping("/api/course")
+    @GetMapping("/api/course/{id}")
     Map<String, Object> getCourseById(@PathVariable Integer id);
 }
 

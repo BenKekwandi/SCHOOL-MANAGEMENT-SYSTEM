@@ -24,11 +24,11 @@ public class CourseController{
        return courseService.getAllCourses();
     }
 
-    // @GetMapping
-    // @ResponseStatus(HttpStatus.OK)
-    // public void show(){
-    //     courseService.getcourse();
-    // }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Course get(@PathVariable Integer id){
+        return courseService.getcourse(id);
+    }
 
 
     @PostMapping

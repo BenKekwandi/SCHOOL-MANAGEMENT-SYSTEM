@@ -1,6 +1,7 @@
 package com.teacher_service.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,9 @@ public class TeacherService{
         
     }
 
-    public void getTeacher(){
-
+    public Teacher getTeacher(Integer id){
+        Optional<Teacher> teacherOpt = teacherRepository.findById(id);
+        return teacherOpt.get();
     }
 
 

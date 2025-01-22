@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.course_service.dto.CourseRequest;
 import com.course_service.dto.CourseResponse;
@@ -28,8 +27,9 @@ public class CourseService{
         
     }
 
-    public void getcourse(){
-
+    public Course getcourse(Integer id){
+        Optional<Course> courseOpt = courseRepository.findById(id);
+        return courseOpt.get();
     }
 
 

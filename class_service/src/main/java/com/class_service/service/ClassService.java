@@ -1,9 +1,12 @@
 package com.class_service.service;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.text.ParseException;
+
 
 import org.springframework.stereotype.Service;
 
@@ -107,11 +110,30 @@ public class ClassService{
             enrollments.add(
                 Enrollment.builder()
                 .studentId((Integer)enrollmentsMap.get("studentId"))
-                .enrollmentDate((Date)enrollmentsMap.get("enrollmentDate"))
-                .student((Student)enrollmentsMap.get("student"))
+                .enrollmentDate(parseDate((String) enrollmentsMap.get("enrollmentDate")))
+                .student(mapToStudent((Map<String, Object>) enrollmentsMap.get("student")))
                 .build()
             );
         }
         return enrollments;
+    }
+
+    private Student mapToStudent(Map<String, Object> studentMap) {
+        return Student.builder()
+            .id((Integer) studentMap.get("id"))
+            .username((String) studentMap.get("username"))
+            .name((String) studentMap.get("name"))
+            .surname((String) studentMap.get("surname"))
+            .email((String) studentMap.get("email"))
+            .build();
+    }
+
+      private Date parseDate(String dateStr) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            return new java.sql.Date(dateFormat.parse(dateStr).getTime());
+        } catch (ParseException e) {
+            throw new RuntimeException("Error parsing date: " + dateStr, e);
+        }
     }
 }

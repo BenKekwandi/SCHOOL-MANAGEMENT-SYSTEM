@@ -1,6 +1,8 @@
 package com.student_service.service;
 
+import java.lang.classfile.ClassFile.Option;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -26,8 +28,9 @@ public class StudentService{
         
     }
 
-    public void getStudent(){
-
+    public Student getStudent(Integer id){
+        Optional<Student> studentOpt = studentRepository.findById(id);
+        return studentOpt.get();
     }
 
 

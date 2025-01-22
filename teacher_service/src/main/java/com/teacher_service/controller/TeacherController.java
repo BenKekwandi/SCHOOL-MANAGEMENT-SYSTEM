@@ -25,11 +25,11 @@ public class TeacherController{
        return teacherService.getAllTeachers();
     }
 
-    // @GetMapping
-    // @ResponseStatus(HttpStatus.OK)
-    // public void show(){
-    //     teacherService.getteacher();
-    // }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Teacher get(@PathVariable Integer id){
+        return teacherService.getTeacher(id);
+    }
 
 
     @PostMapping
