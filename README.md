@@ -148,9 +148,7 @@ Detailed API documentation is available through Swagger at each service's `/swag
 
 ## Contributors
 
-- [Your Name] - Initial work and project setup
-- [Contributor 1] - Feature development
-- [Contributor 2] - Testing and documentation
+- Benoit Kekwandi - Initial work and project setup
 
 ## License
 
